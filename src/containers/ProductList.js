@@ -32,6 +32,7 @@ export const ProductList=()=>{
       products.data.map((el) => {
         return (
           <div className={"list-wrapper"}>
+            <Link to="/CreateProduct" >Create Product</Link>
             <div className={"pokemom-item"}>
               <tr  key={el.id}>
               <td style={{width:"50px"}}>{el.id}</td>

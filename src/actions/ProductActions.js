@@ -49,4 +49,41 @@ export const GetProductList = () => async (dispatch) => {
       });
     }
   };
-  
+  export const CreateProductNew = (postData) => async (dispatch) => {
+   // return axios.post(`https://fakestoreapi.com/products/`,postData)
+   
+    try {
+      dispatch({
+        type: "PRODUCT_CREATE_POSTING",
+      });
+     
+    const res=await axios.post(`https://fakestoreapi.com/products/`,postData)
+    console.log(res.data)
+      dispatch({
+        type: "PRODUCT_CREATE_SUCCESS",
+       // response: res.data,
+        payload: res.data,
+     // response: postData,
+      });
+    } catch (e) {
+      console.log(e.message, "error");
+      dispatch({
+        type: "PRODUCT_CREATE_FAIL",
+      });
+    }
+  };
+  export function createPosts(postData) {
+
+    return dispatch => { //return function
+      return axios.post(`https://fakestoreapi.com/products/`,{postData}) //return post request response
+      .then((data) => { //pass data in as a parameter, call the callback, dispatch the action. 
+         //callback();
+         console.log(data)
+  console.log(data)
+        dispatch({
+          type: "PRODUCT_CREATE_SUCCESS1",
+          payload: data
+        })
+      })
+    }
+  }
